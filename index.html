@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2027 美東雙城探索之旅 | 行程指南</title>
+    <style>
+        :root {
+            --primary: #1B365D;
+            --secondary: #336699;
+            --accent: #E6F0FA;
+            --highlight: #FF9900;
+            --text-main: #2D3748;
+            --bg-light: #F7FAFC;
+            --card-border: #E2E8F0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1.5rem;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        header p { font-size: 1.1rem; opacity: 0.9; }
+        .meta-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+        .container {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.4rem;
+        }
+        .flight-card {
+            background: white;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 600px) {
+            .flight-card { grid-template-columns: 1fr; }
+        }
+        .flight-item h4 { color: var(--secondary); margin-bottom: 0.3rem; }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .day-card {
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease;
+        }
+        .day-card:hover { transform: translateY(-2px); }
+        .day-header {
+            background: var(--accent);
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+        .day-title { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .day-date { color: var(--secondary); font-size: 0.95rem; font-weight: 500; }
+        .day-body { padding: 1.2rem; }
+        .activity { margin-bottom: 0.8rem; }
+        .activity:last-child { margin-bottom: 0; }
+        .act-time {
+            display: inline-block;
+            font-weight: 600;
+            color: var(--secondary);
+            width: 80px;
+        }
+        .act-desc { display: inline; font-weight: 500; }
+        .act-note {
+            display: block;
+            margin-left: 80px;
+            font-size: 0.88rem;
+            color: #718096;
+            margin-top: 0.2rem;
+        }
+        .tag-special {
+            background: #FFF3E0;
+            color: #E65100;
+            font-size: 0.78rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #A0AEC0;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🗽 2027 美東雙城探索之旅 🌴</h1>
+    <p>百老匯音樂劇 ✕ 頂尖舞蹈體驗 ✕ NASA太空探索 ✕ 環球影城 ✕ 國家公園自駕</p>
+    <div class="meta-badges">
+        <span class="badge">📅 2027/01/27 (三) – 2027/02/08 (一)</span>
+        <span class="badge">👥 4 位旅客</span>
+        <span class="badge">✈️ 聯合航空 (UA) 多城市航班</span>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="section-title">✈️ 航班資訊總覽</div>
+    <div class="flight-card">
+        <div class="flight-item">
+            <h4>去程：台北 (TPE) ➔ 紐約 (EWR)</h4>
+            <p><strong>時間：</strong>2027/01/27 11:10 – 17:37 (轉機1次)</p>
+            <p><strong>航程：</strong>19h 27m ｜ 聯合航空 (UA)</p>
+        </div>
+        <div class="flight-item">
+            <h4>回程：邁阿密 (MIA) ➔ 台北 (TPE)</h4>
+            <p><strong>時間：</strong>2027/02/07 07:29 – 02/08 19:50+1 (轉機1次)</p>
+            <p><strong>航程：</strong>23h 21m ｜ 聯合航空 (UA)</p>
+        </div>
+    </div>
+
+    <div class="section-title">🗓️ 每日詳細行程</div>
+    <div class="timeline">
+
+        <!-- Day 1 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 1：抵達紐約大都會</span>
+                <span class="day-date">2027/01/27 (三)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">白天</span>
+                    <span class="act-desc">搭機航行 (TPE ➔ 美西轉機 ➔ EWR)</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">傍晚/夜間</span>
+                    <span class="act-desc">17:37 降落紐華克機場 ➔ 機場火車直達曼哈頓中城 Check-in ➔ 時代廣場漫步</span>
+                    <span class="act-note">💡 備註：入住劇院區周邊，初探百老匯夜景，適應時差。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 2：舞蹈體驗 ✕ 曼哈頓中城 ✕ 百老匯首部曲</span>
+                <span class="day-date">2027/01/28 (四)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">上午</span>
+                    <span class="act-desc">Broadway Dance Center (BDC) 單堂課體驗<span class="tag-special">舞蹈課</span></span>
+                    <span class="act-note">💡 提前 7~14 天於 App 預約名師熱門課。</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">下午</span>
+                    <span class="act-desc">洛克斐勒中心 (Top of the Rock) 觀景台 ➔ 中央公園散步</span>
+                    <span class="act-note">💡 預計 16:00 登頂欣賞曼哈頓夕陽天際線。</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">晚間</span>
+                    <span class="act-desc">【百老匯音樂劇 #1】觀賞經典大劇（如 Wicked / Hamilton）<span class="tag-special">百老匯</span></span>
+                    <span class="act-note">💡 搭配 NYC Broadway Week 買一送一特惠票。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 3：專業舞者殿堂 ✕ 切爾西高線 ✕ 百老匯二部曲</span>
+                <span class="day-date">2027/01/29 (五)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">上午</span>
+                    <span class="act-desc">Steps on Broadway 單堂進階/當代爵士課<span class="tag-special">舞蹈課</span></span>
+                    <span class="act-note">💡 位於 Upper West Side，體驗百老匯職業演員練舞氛圍。</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">下午</span>
+                    <span class="act-desc">雀兒喜市場 (Chelsea Market) 午餐 ➔ High Line 高線公園 ➔ The Vessel</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">晚間</span>
+                    <span class="act-desc">【百老匯音樂劇 #2】觀賞新獲獎劇目（如 Hadestown / The Lion King）<span class="tag-special">百老匯</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 4：大都會藝術巡禮 ✕ 下曼哈頓天際線</span>
+                <span class="day-date">2027/01/30 (六)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">上午/下午</span>
+                    <span class="act-desc">大都會藝術博物館 (The Met) 或 MoMA 現代藝術博物館</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">傍晚/夜間</span>
+                    <span class="act-desc">華爾街 ➔ 世貿 911 紀念廣場 ➔ 自由女神景觀渡輪 (Staten Island Ferry)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 5：飛往陽光佛羅里達 ➔ 奧蘭多環球假期</span>
+                <span class="day-date">2027/01/31 (日)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">上午</span>
+                    <span class="act-desc">國內線航班：紐約 (NYC) ➔ 奧蘭多 (MCO)（飛行約 3.5 小時）</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">下午/夜間</span>
+                    <span class="act-desc">MCO 機場取租車 ➔ Check-in 環球影城度假飯店 ➔ Universal CityWalk 晚餐逛街</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 6：NASA 甘迺迪航太中心深度日 ✕ 火箭發射追蹤</span>
+                <span class="day-date">2027/02/01 (一)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">全天</span>
+                    <span class="act-desc">NASA 甘迺迪航太中心 (Kennedy Space Center) 深度參觀 (09:00 - 17:00)<span class="tag-special">NASA</span></span>
+                    <span class="act-note">🚀 重點：Saturn V 農神五號大樓、Atlantis 太空梭、Gateway 深空模擬器。</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">夜間</span>
+                    <span class="act-desc">Titusville 濱海景觀晚餐 ➔ 追火箭夜間發射預備</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 7 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 7：奧蘭多環球影城雙園狂歡</span>
+                <span class="day-date">2027/02/02 (二)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">全天</span>
+                    <span class="act-desc">Universal Studios Florida + Islands of Adventure (Park-to-Park 雙園)<span class="tag-special">環球影城</span></span>
+                    <span class="act-note">🎢 重點：斜角巷 & 活米村、雙向霍格華茲特快車、海格摩托車過山車、VelociCoaster。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 8：佛州公路自駕 ➔ 前進南佛羅里達</span>
+                <span class="day-date">2027/02/03 (三)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">白天</span>
+                    <span class="act-desc">自駕南下 (Orlando ➔ Homestead / Miami，約 3.5~4 小時)</span>
+                    <span class="act-note">💡 中途停靠西棕櫚灘或羅德岱堡海灘用餐。</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">晚間</span>
+                    <span class="act-desc">抵達 Homestead 飯店 Check-in ➔ 享受熱帶海鮮晚餐</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 9 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 9：大沼澤地國家公園探險 (乾季生態黃金期)</span>
+                <span class="day-date">2027/02/04 (四)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">全天</span>
+                    <span class="act-desc">Everglades National Park (Shark Valley & Anhinga Trail)<span class="tag-special">國家公園</span></span>
+                    <span class="act-note">🐊 重點：草上飛風扇船 (Airboat Tour)、租腳踏車巡弋、近距離觀賞野生短吻鱷與水鳥。</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 10 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 10：比斯坎海上國家公園 或 邁阿密街頭藝術</span>
+                <span class="day-date">2027/02/05 (五)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">全天</span>
+                    <span class="act-desc">Biscayne National Park 珊瑚礁船遊 / 獨木舟 或 Wynwood Walls 藝術牆探索</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 11 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 11：邁阿密南海灘 ✕ 小哈瓦那拉丁風情</span>
+                <span class="day-date">2027/02/06 (六)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">白天</span>
+                    <span class="act-desc">South Beach Art Deco 建築群散步 ➔ Little Havana 品嚐道地古巴咖啡與三明治</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">晚間</span>
+                    <span class="act-desc">整理行李、早點休息（隔日清晨 07:29 班機起飛，需 04:45 抵達機場）</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 12 & 13 -->
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-title">Day 12 - 13：搭機返程 ➔ 跨越換日線抵達台北</span>
+                <span class="day-date">2027/02/07 (日) – 02/08 (一)</span>
+            </div>
+            <div class="day-body">
+                <div class="activity">
+                    <span class="act-time">02/07 清晨</span>
+                    <span class="act-desc">MIA 機場還車登機 (07:29 起飛 ➔ 美西轉機 ➔ 台北)</span>
+                </div>
+                <div class="activity">
+                    <span class="act-time">02/08 晚間</span>
+                    <span class="act-desc">19:50 平安降落台北桃園機場 (TPE)，旅程圓滿結束！</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>2027 US East Coast Journey | Made for Travel Companions</p>
+</footer>
+
+</body>
+</html>
