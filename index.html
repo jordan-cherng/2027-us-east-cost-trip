@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2027 美東雙城探索之旅 | 行程指南</title>
+    <title>2027 美東雙城探索之旅 | 行程與安全指南</title>
     <!-- PapaParse 用於快速解析 Google Sheet CSV -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <style>
@@ -53,7 +53,7 @@
         .section-title {
             font-size: 1.5rem;
             color: var(--primary);
-            margin: 2rem 0 1rem;
+            margin: 2.5rem 0 1.2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -152,6 +152,65 @@
             color: var(--secondary);
             font-weight: bold;
         }
+
+        /* 旅遊安全建議專區樣式 */
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .safety-card {
+            background: white;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .safety-card h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .safety-card ul {
+            padding-left: 1.2rem;
+            font-size: 0.92rem;
+            color: #4A5568;
+        }
+        .safety-card li {
+            margin-bottom: 0.4rem;
+        }
+        .emergency-box {
+            background: #FFF5F5;
+            border: 1px solid #FEB2B2;
+            border-radius: 10px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        .emergency-title {
+            font-weight: bold;
+            color: #C53030;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .emergency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.8rem;
+            font-size: 0.92rem;
+        }
+        .emergency-item {
+            background: white;
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            border: 1px solid #FED7D7;
+        }
+        .emergency-item strong {
+            color: #2D3748;
+        }
         footer {
             text-align: center;
             padding: 2rem 1rem;
@@ -198,6 +257,73 @@
 
     <div id="loading">載入最新行程資料中...</div>
     <div class="timeline" id="timeline-container"></div>
+
+    <!-- 旅行風險分析與安全建議專區 -->
+    <div class="section-title">
+        <span>🛡️ 旅行風險分析與安全應對指引</span>
+    </div>
+
+    <div class="safety-grid">
+        <!-- 紐約市區 -->
+        <div class="safety-card">
+            <h3>🗽 紐約市區（曼哈頓與地鐵）</h3>
+            <ul>
+                <li><strong>街頭行騙防範</strong>：時代廣場與劇院區遇吉祥物布偶拉合照、強塞 CD 或手環，堅決不接、不理並加速走過。</li>
+                <li><strong>夜間散場動線</strong>：百老匯散場（約 22:30）請沿 Broadway / 7th Ave 人潮多的大馬路走，避免走入西側暗巷。</li>
+                <li><strong>地鐵安全策略</strong>：候車站在月台中央遠離軌道；夜間搭乘列車長所在的中段車廂，隨時注意隨身財物。</li>
+            </ul>
+        </div>
+
+        <!-- 奧蘭多 & NASA -->
+        <div class="safety-card">
+            <h3>🚀 奧蘭多 ＆ 太空海岸</h3>
+            <ul>
+                <li><strong>車內淨空原則</strong>：租車期間座位上切勿留包包、外套、充電線或購物袋，避免遭破窗行竊（Smash and Grab）。</li>
+                <li><strong>行李放置時機</strong>：所有行李與大件物品請在抵達目的地前放妥於後車廂，避免在停車場開箱引人側目。</li>
+                <li><strong>樂園安全</strong>：環球官方 Premier 飯店有獨立安檢與門禁，能大幅降低停車與個人財物風險。</li>
+            </ul>
+        </div>
+
+        <!-- 自駕 & 邁阿密 -->
+        <div class="safety-card">
+            <h3>🚗 佛州公路自駕 ＆ 邁阿密</h3>
+            <ul>
+                <li><strong>分區安全留意</strong>：Wynwood 藝術區入夜後治安轉差，請直接返回飯店；避開西北側（如 Overtown 等）區域。</li>
+                <li><strong>清晨加油還車</strong>：02/07 清晨（04:30）需至 MIA 機場還車，務必於前一晚加滿油，避免清晨在昏暗加油站停留。</li>
+                <li><strong>行車安全</strong>：市區移動盡量行駛主要幹道（I-95 等），導航若切入偏僻暗巷請保持門窗緊閉上鎖。</li>
+            </ul>
+        </div>
+
+        <!-- 國家公園 -->
+        <div class="safety-card">
+            <h3>🐊 大沼澤地國家公園（生態戶外）</h3>
+            <ul>
+                <li><strong>野生鱷魚安全距離</strong>：騎車或步道徒步時，與野生短吻鱷保持至少 4.5 公尺（15 英尺）距離，絕不可餵食。</li>
+                <li><strong>戶外必備裝備</strong>：乾季依然需備妥防蚊液、防曬乳與足量飲用水。</li>
+                <li><strong>離線地圖</strong>：國家公園深處手機訊號可能微弱，出發前先下載好 Google 離線地圖。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 緊急聯絡與重要備份 -->
+    <div class="emergency-box">
+        <div class="emergency-title">🚨 緊急聯絡與行前必備措施</div>
+        <div class="emergency-grid">
+            <div class="emergency-item">
+                <strong>美國通用報案專線：</strong><br>📞 911（急診、警察、火警）
+            </div>
+            <div class="emergency-item">
+                <strong>駐紐約辦事處急難救助：</strong><br>📞 +1-917-893-4877
+            </div>
+            <div class="emergency-item">
+                <strong>駐邁阿密辦事處急難救助：</strong><br>📞 +1-786-271-6352
+            </div>
+            <div class="emergency-item">
+                <strong>重要證件備份：</strong><br>📁 護照、ESTA、國際駕照存 PDF 於手機離線相簿
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer>
@@ -205,8 +331,6 @@
 </footer>
 
 <script>
-    // ⚠️ 只要把您發布的 Google Sheet CSV 連結貼在下方：
-    const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1l_WjXvTq6r6qI9E4c8bK7k8Yh1j3_PLACEHOLDER/pub?gid=0&single=true&output=csv';
     // 預設的 Google Sheet Document ID
     const DEFAULT_DOC_ID = '1bcqKvP4wMuxb9PRAikyXynVCjfCAbhCuHeVeXd3CrkY';
     const GVIZ_CSV_URL = `https://docs.google.com/spreadsheets/d/${DEFAULT_DOC_ID}/gviz/tq?tqx=out:csv`;
@@ -226,7 +350,6 @@
         const loadingEl = document.getElementById('loading');
         const container = document.getElementById('timeline-container');
 
-        // 優先嘗試 gviz/tq 介面讀取公开試算表
         Papa.parse(GVIZ_CSV_URL, {
             download: true,
             header: true,
