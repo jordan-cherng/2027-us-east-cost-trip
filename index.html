@@ -152,8 +152,6 @@
             color: var(--secondary);
             font-weight: bold;
         }
-
-        /* 旅遊安全建議專區樣式 */
         .safety-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -226,9 +224,9 @@
     <h1>🗽 2027 美東雙城探索之旅 🌴</h1>
     <p>百老匯音樂劇 ✕ 頂尖舞蹈體驗 ✕ NASA太空探索 ✕ 環球影城 ✕ 國家公園自駕</p>
     <div class="meta-badges">
-        <span class="badge">📅 2027/01/27 (三) – 2027/02/08 (一)</span>
+        <span class="badge">📅 2027/01/27 (三) – 2027/02/09 (二)</span>
         <span class="badge">👥 4 位旅客</span>
-        <span class="badge">✈️ 聯合航空 (UA) 多城市航班</span>
+        <span class="badge">✈️ 聯合航空 (UA) 訂位代號：MFDX1M</span>
     </div>
 </header>
 
@@ -239,14 +237,16 @@
     </div>
     <div class="flight-card">
         <div class="flight-item">
-            <h4>去程：台北 (TPE) ➔ 紐約 (EWR)</h4>
-            <p><strong>時間：</strong>2027/01/27 11:10 – 17:37 (轉機1次)</p>
-            <p><strong>航程：</strong>19h 27m ｜ 聯合航空 (UA)</p>
+            <h4>去程：台北 (TPE) ➔ 舊金山 (SFO) ➔ 紐約 (EWR)</h4>
+            <p><strong>航班：</strong>UA872 / UA1909</p>
+            <p><strong>時間：</strong>2027/01/27 11:10 ➔ 01/27 18:33 (SFO 轉機 3h 25m)</p>
+            <p><strong>航程：</strong>總時長約 19h 23m ｜ 聯合航空 (UA)</p>
         </div>
         <div class="flight-item">
-            <h4>回程：邁阿密 (MIA) ➔ 台北 (TPE)</h4>
-            <p><strong>時間：</strong>2027/02/07 07:29 – 02/08 19:50+1 (轉機1次)</p>
-            <p><strong>航程：</strong>23h 21m ｜ 聯合航空 (UA)</p>
+            <h4>回程：邁阿密 (MIA) ➔ 舊金山 (SFO) ➔ 台北 (TPE)</h4>
+            <p><strong>航班：</strong>UA2300 / UA853</p>
+            <p><strong>時間：</strong>2027/02/07 16:37 ➔ 02/09 05:45+2 (SFO 轉機 2h 58m)</p>
+            <p><strong>航程：</strong>總時長約 25h 08m ｜ 抵達台北：02/09 清晨</p>
         </div>
     </div>
 
@@ -258,13 +258,11 @@
     <div id="loading">載入最新行程資料中...</div>
     <div class="timeline" id="timeline-container"></div>
 
-    <!-- 旅行風險分析與安全建議專區 -->
     <div class="section-title">
         <span>🛡️ 旅行風險分析與安全應對指引</span>
     </div>
 
     <div class="safety-grid">
-        <!-- 紐約市區 -->
         <div class="safety-card">
             <h3>🗽 紐約市區（曼哈頓與地鐵）</h3>
             <ul>
@@ -274,7 +272,6 @@
             </ul>
         </div>
 
-        <!-- 奧蘭多 & NASA -->
         <div class="safety-card">
             <h3>🚀 奧蘭多 ＆ 太空海岸</h3>
             <ul>
@@ -284,17 +281,15 @@
             </ul>
         </div>
 
-        <!-- 自駕 & 邁阿密 -->
         <div class="safety-card">
             <h3>🚗 佛州公路自駕 ＆ 邁阿密</h3>
             <ul>
                 <li><strong>分區安全留意</strong>：Wynwood 藝術區入夜後治安轉差，請直接返回飯店；避開西北側（如 Overtown 等）區域。</li>
-                <li><strong>清晨加油還車</strong>：02/07 清晨（04:30）需至 MIA 機場還車，務必於前一晚加滿油，避免清晨在昏暗加油站停留。</li>
+                <li><strong>還車與加加油指引</strong>：02/07 為下午 16:37 航班，建議中午 13:30 前往 MIA 機場還車，時間充裕安全。</li>
                 <li><strong>行車安全</strong>：市區移動盡量行駛主要幹道（I-95 等），導航若切入偏僻暗巷請保持門窗緊閉上鎖。</li>
             </ul>
         </div>
 
-        <!-- 國家公園 -->
         <div class="safety-card">
             <h3>🐊 大沼澤地國家公園（生態戶外）</h3>
             <ul>
@@ -305,7 +300,6 @@
         </div>
     </div>
 
-    <!-- 緊急聯絡與重要備份 -->
     <div class="emergency-box">
         <div class="emergency-title">🚨 緊急聯絡與行前必備措施</div>
         <div class="emergency-grid">
@@ -331,7 +325,6 @@
 </footer>
 
 <script>
-    // 預設的 Google Sheet Document ID
     const DEFAULT_DOC_ID = '1bcqKvP4wMuxb9PRAikyXynVCjfCAbhCuHeVeXd3CrkY';
     const GVIZ_CSV_URL = `https://docs.google.com/spreadsheets/d/${DEFAULT_DOC_ID}/gviz/tq?tqx=out:csv`;
 
@@ -375,7 +368,6 @@
             return;
         }
 
-        // 依「天數」分組
         const grouped = {};
         rows.forEach(row => {
             const dayKey = (row['天數'] || row['Day'] || '').trim();
