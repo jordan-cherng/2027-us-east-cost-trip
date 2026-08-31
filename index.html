@@ -21,9 +21,6 @@
  --text-main: #2D3748;
  --bg-light: #F7FAFC;
  --card-border: #E2E8F0;
- --tag-ny: #7C3AED;
- --tag-fl: #0D9488;
- --tag-flight: #2563EB;
  }
  
  * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -263,13 +260,13 @@
  .act-time {
  font-weight: 600;
  color: var(--secondary);
- min-width: 80px;
+ min-width: 90px;
  }
  
  .act-desc { font-weight: 500; color: var(--text-main); flex: 1; }
  
  .act-meta {
- margin-left: 80px;
+ margin-left: 90px;
  font-size: 0.88rem;
  color: #718096;
  margin-top: 0.3rem;
@@ -311,7 +308,7 @@
  color: var(--secondary);
  font-weight: bold;
  }
- 
+
  .safety-grid {
  display: grid;
  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -520,23 +517,16 @@
  let map;
  const markersGroup = [];
 
- // 地圖景點與關鍵地標清單
  const mapLocations = [
- // 紐約站
  { name: "紐約紐華克機場 (EWR)", lat: 40.6895, lng: -74.1745, icon: "✈️", region: "nyc", color: "#2563EB", tag: "Day 1 抵達紐約", desc: "UA1909 飛抵紐約，前往曼哈頓飯店入住" },
  { name: "百老匯劇院區 (Times Square)", lat: 40.7580, lng: -73.9855, icon: "🎭", region: "nyc", color: "#7C3AED", tag: "Day 2-3 音樂劇", desc: "欣賞百老匯精選音樂劇、時代廣場夜景" },
  { name: "Broadway Dance Center (BDC)", lat: 40.7608, lng: -73.9896, icon: "💃", region: "nyc", color: "#7C3AED", tag: "Day 2 頂尖舞蹈課", desc: "紐約殿堂級舞蹈教室進修體驗" },
  { name: "Steps on Broadway", lat: 40.7801, lng: -73.9806, icon: "🩰", region: "nyc", color: "#7C3AED", tag: "Day 3 上西城舞蹈", desc: "上西城經典專業舞者排練與研習工作坊" },
  { name: "中央公園 (Central Park)", lat: 40.7851, lng: -73.9683, icon: "🌲", region: "nyc", color: "#7C3AED", tag: "Day 3 曼哈頓漫步", desc: "冬日漫步、眺望曼哈頓天際線與林蔭大道" },
  { name: "大都會藝術博物館 (The Met)", lat: 40.7794, lng: -73.9632, icon: "🏛️", region: "nyc", color: "#7C3AED", tag: "Day 4 藝術探索", desc: "世界四大博物館之一，豐富常設展品" },
- { name: "紐約甘迺迪/拉瓜地亞機場", lat: 40.7769, lng: -73.8740, icon: "🛫", region: "nyc", color: "#2563EB", tag: "Day 5 飛往奧蘭多", desc: "告別紐約，搭機南下佛羅里達陽光之州" },
-
- // 奧蘭多 & 太空海岸
  { name: "奧蘭多國際機場 (MCO)", lat: 28.4312, lng: -81.3081, icon: "🛬", region: "orlando", color: "#2563EB", tag: "Day 5 抵達佛州", desc: "領取自駕租車，入住環球影城度假飯店" },
  { name: "甘迺迪太空中心 (KSC / NASA)", lat: 28.5729, lng: -80.6490, icon: "🚀", region: "orlando", color: "#0D9488", tag: "Day 6 太空探索", desc: "參觀亞特蘭提斯號太空梭、土星五號火箭與發射台" },
  { name: "奧蘭多環球影城度假區", lat: 28.4743, lng: -81.4678, icon: "🎢", region: "orlando", color: "#0D9488", tag: "Day 7 環球影城", desc: "哈利波特魔法世界、冒險島與雙樂園暢玩" },
-
- // 邁阿密 & 大沼澤
  { name: "邁阿密海灘 (South Beach)", lat: 25.7617, lng: -80.1918, icon: "🏖️", region: "miami", color: "#0D9488", tag: "Day 8 海濱度假", desc: "裝飾藝術歷史區 (Art Deco)、享受大西洋陽光" },
  { name: "Wynwood Walls 藝術區", lat: 25.8010, lng: -80.1994, icon: "🎨", region: "miami", color: "#0D9488", tag: "Day 9 潮流街頭藝術", desc: "全球最大戶外街頭塗鴉與當代潮流文創園區" },
  { name: "大沼澤地 Shark Valley", lat: 25.7628, lng: -80.7656, icon: "🐊", region: "miami", color: "#0D9488", tag: "Day 10 國家公園自駕", desc: "自行車生態步道、近距離觀察野生短吻鱷與熱帶鳥類" },
@@ -550,39 +540,23 @@
  scrollWheelZoom: false
  });
 
- // 使用 CartoDB Positron 高質感乾淨底圖
  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
  subdomains: 'abcd',
  maxZoom: 19
  }).addTo(map);
 
- // 繪製跨州航線
- const flightRouteCoords = [
- [40.6895, -74.1745], // EWR
- [28.4312, -81.3081] // MCO
- ];
-
+ const flightRouteCoords = [[40.6895, -74.1745], [28.4312, -81.3081]];
  const floridaDriveRouteCoords = [
- [28.4312, -81.3081], // Orlando
- [28.5729, -80.6490], // KSC
- [25.8010, -80.1994], // Miami
- [25.7628, -80.7656], // Everglades
- [25.7959, -80.2870] // MIA Airport
+ [28.4312, -81.3081],
+ [28.5729, -80.6490],
+ [25.8010, -80.1994],
+ [25.7628, -80.7656],
+ [25.7959, -80.2870]
  ];
 
- L.polyline(flightRouteCoords, {
- color: '#2563EB',
- dashArray: '8, 8',
- weight: 3,
- opacity: 0.7
- }).addTo(map).bindPopup('✈️ <b>國內跨州航段</b><br>紐約 (NYC) ➔ 奧蘭多 (MCO)');
-
- L.polyline(floridaDriveRouteCoords, {
- color: '#0D9488',
- weight: 3.5,
- opacity: 0.8
- }).addTo(map).bindPopup('🚗 <b>佛州自駕動線</b><br>奧蘭多 ➔ 太空海岸 ➔ 邁阿密 ➔ 大沼澤地');
+ L.polyline(flightRouteCoords, { color: '#2563EB', dashArray: '8, 8', weight: 3, opacity: 0.7 }).addTo(map).bindPopup('✈️ <b>國內跨州航段</b><br>紐約 (NYC) ➔ 奧蘭多 (MCO)');
+ L.polyline(floridaDriveRouteCoords, { color: '#0D9488', weight: 3.5, opacity: 0.8 }).addTo(map).bindPopup('🚗 <b>佛州自駕動線</b><br>奧蘭多 ➔ 太空海岸 ➔ 邁阿密 ➔ 大沼澤地');
 
  mapLocations.forEach(loc => {
  const customIcon = L.divIcon({
@@ -601,31 +575,24 @@
  </div>
  `;
 
- const marker = L.marker([loc.lat, loc.lng], { icon: customIcon })
- .bindPopup(popupHtml);
- 
+ const marker = L.marker([loc.lat, loc.lng], { icon: customIcon }).bindPopup(popupHtml);
  marker.region = loc.region;
  marker.addTo(map);
  markersGroup.push(marker);
  });
 
- // 強制重算地圖尺寸，避免上線後地圖空白灰畫面
+ // 強制重算地圖尺寸，修復上線後地圖空白灰畫面
  setTimeout(() => {
  if (map) map.invalidateSize();
  }, 250);
  }
 
  function focusRegion(region) {
- document.querySelectorAll('.map-btn').forEach(btn => {
- btn.classList.remove('active');
- });
+ document.querySelectorAll('.map-btn').forEach(btn => btn.classList.remove('active'));
  event.target.classList.add('active');
 
  if (region === 'all') {
- map.flyToBounds([
- [24.5, -82.0],
- [42.0, -73.0]
- ], { padding: [30, 30], duration: 1.2 });
+ map.flyToBounds([[24.5, -82.0], [42.0, -73.0]], { padding: [30, 30], duration: 1.2 });
  } else if (region === 'nyc') {
  map.flyTo([40.7580, -73.9855], 12, { duration: 1.2 });
  } else if (region === 'orlando') {
@@ -635,16 +602,19 @@
  }
  }
 
- const DEFAULT_DOC_ID = '1bcqKvP4wMuxb9PRAikyXynVCjfCAbhCuHeVeXd3CrkY';
+ // ==========================================
+ // 請在此處替換您正確的 Google 試算表 ID
+ // ==========================================
+ const DEFAULT_DOC_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'; 
  const GVIZ_CSV_URL = `https://docs.google.com/spreadsheets/d/${DEFAULT_DOC_ID}/gviz/tq?tqx=out:csv`;
 
  function getTag(text) {
  if (!text) return '';
  if (text.includes('舞蹈') || text.includes('BDC') || text.includes('Steps')) return '<span class="tag-special">舞蹈課</span>';
- if (text.includes('百老匯')) return '<span class="tag-special">百老匯</span>';
- if (text.includes('NASA')) return '<span class="tag-special">NASA</span>';
+ if (text.includes('百老匯') || text.includes('音樂劇')) return '<span class="tag-special">百老匯</span>';
+ if (text.includes('NASA') || text.includes('太空')) return '<span class="tag-special">NASA</span>';
  if (text.includes('環球影城')) return '<span class="tag-special">環球影城</span>';
- if (text.includes('國家公園')) return '<span class="tag-special">國家公園</span>';
+ if (text.includes('國家公園') || text.includes('大沼澤地')) return '<span class="tag-special">國家公園</span>';
  return '';
  }
 
@@ -661,8 +631,8 @@
  },
  error: function(err) {
  console.warn("GViz API 讀取失敗...", err);
- statusEl.textContent = '⚠️ 請確認 Google Sheet 權限';
- loadingEl.textContent = '無法讀取 Sheet，請確保該 Google 試算表共用設定已開啟為「知道連結的使用者皆可檢視」。';
+ statusEl.textContent = '⚠️ Google Sheet 讀取失敗';
+ loadingEl.innerHTML = '無法讀取 Sheet。請確認：<br>1. 已將 <code>DEFAULT_DOC_ID</code> 替換為您的 Google Sheet ID。<br>2. 該 Google 試算表共用設定已開啟為<b>「知道連結的使用者皆可檢視」</b>。';
  }
  });
  }
@@ -679,20 +649,20 @@
 
  const grouped = {};
  rows.forEach(row => {
- const dayKey = (row['天數'] || row['Day'] || '').trim();
+ const dayKey = (row['天數'] || '').trim();
  if (!dayKey) return;
  if (!grouped[dayKey]) {
  grouped[dayKey] = {
  day: dayKey,
- date: (row['日期 (星期)'] || row['日期'] || '').trim(),
+ date: (row['日期 (星期)'] || '').trim(),
  activities: []
  };
  }
  grouped[dayKey].activities.push({
- time: (row['時間'] || '').trim(),
- desc: (row['行程內容'] || row['活動'] || '').trim(),
- meta: (row['細節與備註'] || row['備註'] || '').trim(),
- cost: (row['預估費用'] || '').trim()
+ time: (row['時段'] || '').trim(),
+ desc: (row['核心景點 / 活動安排'] || '').trim(),
+ meta: (row['主要地點 & 交通方式'] || '') + ' ｜ ' + (row['重點備註 & 預約提醒'] || ''),
+ cost: (row['預計費用/票券'] || '').trim()
  });
  });
 
@@ -707,7 +677,7 @@
  let actsHtml = '';
  group.activities.forEach(act => {
  const tag = getTag(act.desc + ' ' + act.meta);
- const costTag = act.cost ? `<span class="tag-cost">💰 ${act.cost}</span>` : '';
+ const costTag = act.cost && act.cost !== '-' ? `<span class="tag-cost">💰 ${act.cost}</span>` : '';
  actsHtml += `
  <div class="activity">
  <div class="act-header">
@@ -732,7 +702,6 @@
  });
  }
 
- // 初始化執行
  window.addEventListener('DOMContentLoaded', () => {
  initMap();
  loadItinerary();
