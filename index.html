@@ -8,9 +8,9 @@
  <!-- PapaParse 用於解析 Google Sheet CSV -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
  
- <!-- Leaflet.js 地圖庫 -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" integrity="sha512-Zcn6HvY/4ddhOYojz24g56w5/aWn2K1G0fVzV+06r18s3621r8/1G2/2g0+5+Y9t7s62217f2g566==" crossorigin="" />
- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js" integrity="sha512-BwHFRr4c9kmRUVmVawMEUphNzwdVAQI5BQTi6zTy8mEO9SFIowRTCWdo8K4ybNm/qSTLmVkr5KOY5ubEU09HdA==" crossorigin=""></script>
+ <!-- Leaflet.js 地圖庫 (已移除 integrity 避免遭瀏覽器阻擋) -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 
  <style>
  :root {
@@ -21,6 +21,9 @@
  --text-main: #2D3748;
  --bg-light: #F7FAFC;
  --card-border: #E2E8F0;
+ --tag-ny: #7C3AED;
+ --tag-fl: #0D9488;
+ --tag-flight: #2563EB;
  }
  
  * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -308,7 +311,7 @@
  color: var(--secondary);
  font-weight: bold;
  }
-
+ 
  .safety-grid {
  display: grid;
  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -493,7 +496,7 @@
  <div class="emergency-title">🚨 緊急聯絡與行前必備措施</div>
  <div class="emergency-grid">
  <div class="emergency-item">
- <strong>美國通用報案專線：</strong><br>📞 911（急診、警察、火警）
+ <strong>美國通用報案專線：</strong><br>📞 911（急診, 警察, 火警）
  </div>
  <div class="emergency-item">
  <strong>駐紐約辦事處急難救助：</strong><br>📞 +1-917-893-4877
@@ -581,7 +584,7 @@
  markersGroup.push(marker);
  });
 
- // 強制重算地圖尺寸，修復地圖空白灰畫面
+ // 強制重算地圖尺寸，避免地圖空白灰畫面
  setTimeout(() => {
  if (map) map.invalidateSize();
  }, 250);
@@ -605,7 +608,7 @@
  // ==========================================
  // 請在此處填入您正確的 Google 試算表 ID
  // ==========================================
- const DEFAULT_DOC_ID = '1bcqKvP4wMuxb9PRAikyXynVCjfCAbhCuHeVeXd3CrkY'; 
+ const DEFAULT_DOC_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'; 
  const GVIZ_CSV_URL = `https://docs.google.com/spreadsheets/d/${DEFAULT_DOC_ID}/gviz/tq?tqx=out:csv`;
 
  function getTag(text) {
