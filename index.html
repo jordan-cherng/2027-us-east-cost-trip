@@ -642,12 +642,18 @@
   // 取得每天的預估氣溫標籤
   function getEstimatedTempTag(dayStr) {
     if (!dayStr) return '';
-    const d = dayStr.toUpperCase();
-    if (d.includes('DAY 1') || d.includes('DAY 2') || d.includes('DAY 3') || d.includes('DAY 4')) {
+    
+    // 從字串中提取天數數字（例如 "Day 10" -> 10）
+    const match = dayStr.match(/\d+/);
+    if (!match) return '';
+    
+    const dayNum = parseInt(match[0], 10);
+
+    if (dayNum >= 1 && dayNum <= 4) {
       return `<span class="day-temp-badge">❄️ 紐約約 -3°C ~ 4°C</span>`;
-    } else if (d.includes('DAY 5') || d.includes('DAY 6') || d.includes('DAY 7')) {
+    } else if (dayNum >= 5 && dayNum <= 7) {
       return `<span class="day-temp-badge">🌤️ 奧蘭多約 11°C ~ 22°C</span>`;
-    } else if (d.includes('DAY 8') || d.includes('DAY 9') || d.includes('DAY 10') || d.includes('DAY 11')) {
+    } else if (dayNum >= 8) {
       return `<span class="day-temp-badge">🌴 邁阿密約 17°C ~ 25°C</span>`;
     }
     return '';
