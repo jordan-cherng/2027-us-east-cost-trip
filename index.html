@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2027 美東雙城探索之旅 | 行程、地圖與安全指南</title>
+  <title>2027 美東雙城探索之旅 | 行程、地圖、氣溫與安全指南</title>
   
   <!-- PapaParse 用於解析 Google Sheet CSV -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
@@ -93,6 +93,71 @@
     }
     
     .flight-item h4 { color: var(--secondary); margin-bottom: 0.3rem; }
+
+    /* 氣溫資訊卡樣式 */
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .weather-card {
+      background: white;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .weather-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+    }
+
+    .weather-card.ny::before { background-color: #3B82F6; }
+    .weather-card.orlando::before { background-color: #F59E0B; }
+    .weather-card.miami::before { background-color: #10B981; }
+
+    .weather-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .weather-city {
+      font-weight: bold;
+      font-size: 1.05rem;
+      color: var(--primary);
+    }
+
+    .weather-temp {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .weather-desc {
+      font-size: 0.88rem;
+      color: #64748B;
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .weather-tips {
+      font-size: 0.82rem;
+      background: #F8FAFC;
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem;
+      color: #475569;
+    }
 
     /* 地圖區塊樣式 */
     .map-wrapper {
@@ -222,10 +287,34 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
     
+    .day-title-box {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
     .day-title { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
     .day-date { color: var(--secondary); font-size: 0.95rem; font-weight: 500; }
+    
+    /* 每日卡片右上角的氣溫標籤 */
+    .day-temp-badge {
+      font-size: 0.82rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: white;
+      border: 1px solid var(--card-border);
+      font-weight: 600;
+      color: #334155;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
     .day-body { padding: 1.2rem; }
     
     .activity { margin-bottom: 1rem; }
@@ -395,6 +484,41 @@
     </div>
   </div>
 
+  <!-- 行程區域氣溫與穿著指引 -->
+  <div class="section-title">
+    <span>🌡️ 行程氣候與預估攝氏氣溫</span>
+    <span class="status-badge">冬日極寒 ➔ 避寒陽光</span>
+  </div>
+
+  <div class="weather-grid">
+    <div class="weather-card ny">
+      <div class="weather-card-header">
+        <span class="weather-city">🗽 紐約市區 (NYC)</span>
+        <span class="weather-temp">-3°C ～ 4°C</span>
+      </div>
+      <div class="weather-desc">隆冬嚴寒、夜間常低於零下、偶有降雪與強陣風</div>
+      <div class="weather-tips">🧣 <strong>建議穿搭</strong>：重磅防風防潑水羽絨外套、發熱衣褲、保暖圍巾、毛帽與觸控手套。</div>
+    </div>
+
+    <div class="weather-card orlando">
+      <div class="weather-card-header">
+        <span class="weather-city">🚀 奧蘭多 & 太空海岸</span>
+        <span class="weather-temp">11°C ～ 22°C</span>
+      </div>
+      <div class="weather-desc">乾季舒適、晴朗溫和，清晨與深夜偏涼</div>
+      <div class="weather-tips">🧥 <strong>建議穿搭</strong>：洋蔥式穿法，白天薄長袖/帽T，早晚或戶外風大時備輕羽絨或防風外套。</div>
+    </div>
+
+    <div class="weather-card miami">
+      <div class="weather-card-header">
+        <span class="weather-city">🌴 邁阿密 & 大沼澤地</span>
+        <span class="weather-temp">17°C ～ 25°C</span>
+      </div>
+      <div class="weather-desc">熱帶溫暖晴朗，乾季少雨，日照充足</div>
+      <div class="weather-tips">🕶️ <strong>建議穿搭</strong>：短袖、休閒長褲/短褲、太陽眼鏡、遮陽帽；國家公園戶外需防蚊液。</div>
+    </div>
+  </div>
+
   <!-- 互動式行程地圖 (Google Maps) -->
   <div class="section-title">
     <span>🗺️ 旅程全覽與景點地圖</span>
@@ -515,7 +639,20 @@
     { name: "邁阿密國際機場 (MIA)", lat: 25.7959, lng: -80.2870, icon: "🛫", region: "miami", color: "#2563EB", tag: "Day 11 返程起飛", desc: "UA2300 經舊金山返台，圓滿結束美東雙城之旅" }
   ];
 
-  // 建立自訂圓形 SVG 標記圖示
+  // 取得每天的預估氣溫標籤
+  function getEstimatedTempTag(dayStr) {
+    if (!dayStr) return '';
+    const d = dayStr.toUpperCase();
+    if (d.includes('DAY 1') || d.includes('DAY 2') || d.includes('DAY 3') || d.includes('DAY 4')) {
+      return `<span class="day-temp-badge">❄️ 紐約約 -3°C ~ 4°C</span>`;
+    } else if (d.includes('DAY 5') || d.includes('DAY 6') || d.includes('DAY 7')) {
+      return `<span class="day-temp-badge">🌤️ 奧蘭多約 11°C ~ 22°C</span>`;
+    } else if (d.includes('DAY 8') || d.includes('DAY 9') || d.includes('DAY 10') || d.includes('DAY 11')) {
+      return `<span class="day-temp-badge">🌴 邁阿密約 17°C ~ 25°C</span>`;
+    }
+    return '';
+  }
+
   function createMarkerIcon(emoji, strokeColor) {
     const svg = `
       <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
@@ -537,22 +674,17 @@
 
     infoWindow = new google.maps.InfoWindow();
 
-    // 跨州航段虛線 (紐約 -> 奧蘭多)
+    // 跨州航段虛線
     const flightPlanCoordinates = [
       { lat: 40.6895, lng: -74.1745 },
       { lat: 28.4312, lng: -81.3081 }
     ];
-    const lineSymbol = {
-      path: "M 0,-1 0,1",
-      strokeOpacity: 1,
-      scale: 3
-    };
     new google.maps.Polyline({
       path: flightPlanCoordinates,
       strokeColor: "#2563EB",
       strokeOpacity: 0,
       icons: [{
-        icon: lineSymbol,
+        icon: { path: "M 0,-1 0,1", strokeOpacity: 1, scale: 3 },
         offset: "0",
         repeat: "16px"
       }],
@@ -607,7 +739,6 @@
     });
   }
 
-  // 視角切換功能
   function focusRegion(region, btnElement) {
     document.querySelectorAll('.map-btn').forEach(btn => btn.classList.remove('active'));
     if (btnElement) btnElement.classList.add('active');
@@ -699,6 +830,7 @@
     Object.values(grouped).forEach(group => {
       const card = document.createElement('div');
       card.className = 'day-card';
+      const tempBadge = getEstimatedTempTag(group.day);
       
       let actsHtml = '';
       group.activities.forEach(act => {
@@ -710,15 +842,18 @@
               <span class="act-time">${act.time}</span>
               <span class="act-desc">${act.desc} ${tag} ${costTag}</span>
             </div>
-            ${act.meta ? `<div class="act-meta">${act.meta}</div>` : ''}
+            ${act.meta ? `<div class="act-meta">\${act.meta}</div>` : ''}
           </div>
         `;
       });
 
       card.innerHTML = `
         <div class="day-header">
-          <span class="day-title">${group.day}</span>
-          <span class="day-date">${group.date}</span>
+          <div class="day-title-box">
+            <span class="day-title">${group.day}</span>
+            <span class="day-date">${group.date}</span>
+          </div>
+          ${tempBadge}
         </div>
         <div class="day-body">
           ${actsHtml}
@@ -733,9 +868,9 @@
   });
 </script>
 
-<!-- 載入 Google Maps JavaScript API (請替換 YOUR_GOOGLE_MAPS_API_KEY) -->
+<!-- 載入 Google Maps JavaScript API (請將 YOUR_GOOGLE_MAPS_API_KEY 替換為您的金鑰) -->
 <script async defer 
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBe4uq_8BGQJfzsIcu6USc3-c6g1KC5Uso&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap">
 </script>
 
 </body>
